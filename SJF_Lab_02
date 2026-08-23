@@ -1,0 +1,70 @@
+processes = [
+    ["P1", 3, 1],
+    ["P2", 2, 4],
+    ["P3", 3, 6],
+    ["P4", 1, 3],
+    ["P5", 4, 2],
+    ["P6", 6, 1],
+]
+
+
+current_time = 0
+total_turnaroundTime = 0
+total_waitingTime = 0
+
+
+n = len(processes)
+
+
+print("Process\tArrival\tBurst\tCompletion\tTurnaround\tWaiting")
+
+
+while processes:
+
+
+    available = []
+
+
+    for process in processes:
+        if process[1] <= current_time:
+            available.append(process)
+ if not available:
+        current_time += 1
+        continue
+
+
+    sort = min(available, key=lambda x: x[2])
+
+
+    process, arrival, burst = sort
+
+
+    completion = current_time + burst
+
+
+    turnaround = completion - arrival
+
+
+    waiting = turnaround - burst
+
+
+    total_turnaroundTime += turnaround
+    total_waitingTime += waiting
+
+
+    print(process, "\t", arrival, "\t", burst, "\t",
+          completion, "\t\t", turnaround, "\t\t", waiting)
+
+
+    current_time = completion
+  processes.remove(sort)
+
+
+
+
+average_turnaroundTime = total_turnaroundTime / n
+average_waitingTime = total_waitingTime / n
+
+
+print("\nAverage Turnaround Time =", average_turnaroundTime)
+print("Average Waiting Time =", average_waitingTime)

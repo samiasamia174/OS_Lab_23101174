@@ -1,0 +1,17 @@
+requests=[0,41,30,100,62,51,20]
+currentH=70
+
+
+newH=0
+totalSeekvalue=0
+n=len(requests)
+for request in requests:
+
+
+  difference=abs(currentH-newH)
+  currentH=newH
+  newH=request
+  totalSeekvalue+=difference
+
+
+print("Total No of seek operation:", totalSeekvalue)

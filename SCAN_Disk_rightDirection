@@ -1,0 +1,37 @@
+requests=[0,20,30,41,51,62,100]
+
+currentH=70
+newH=0
+
+left=[]
+right=[]
+
+totalseekvalue=0
+direction=right
+
+n=len(requests)
+
+for request in requests:
+    if request<currentH:
+        left.append(request)
+    else:
+        right.append(request)
+
+left.sort(reverse=True)
+right.sort()
+
+
+
+for request in right:
+    difference=abs(currentH-request)
+    currentH=request
+    totalseekvalue+=difference
+
+for request in left:
+    difference=abs(currentH-request)
+    currentH=request
+    totalseekvalue+=difference
+
+print("left array=",left)
+print("right array=",right)
+print("Total Seek Value=",totalseekvalue)

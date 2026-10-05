@@ -1,0 +1,37 @@
+requests=[0,20,30,41,51,62,100]
+
+currentH=70
+
+left=[]
+right=[]
+totalSeekvalue=0
+
+for request in requests:
+
+  if request < currentH:
+    left.append(request)
+  else:
+    right.append(request)
+
+left.sort(reverse=True)
+right.sort()
+
+for request in left:
+
+  difference=abs(currentH-request)
+  currentH=request
+  totalSeekvalue+=difference
+
+if currentH != 0:
+
+  difference=abs(currentH-0)
+  currentH=0
+  totalSeekvalue+=difference
+
+for request in right:
+
+  difference=abs(currentH-request)
+  currentH=request
+  totalSeekvalue+=difference
+
+print("Total No of seek operation:", totalSeekvalue)

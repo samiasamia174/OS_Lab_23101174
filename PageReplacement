@@ -1,0 +1,25 @@
+reference_string=[1,2,3,4,1,2,5,1,2,3,4,5]
+frame_size=3
+queue=[]
+fault=0
+hit=0
+
+
+for page in reference_string:
+  if page not in queue:
+    if len(queue)<frame_size:
+      queue.append(page)
+      fault+=1
+    else:
+      queue.pop(0)
+      queue.append(page)
+      fault+=1
+
+
+    if queue[0]==page:
+     hit+=1
+
+
+print("Fault: ",fault)
+print("Hit: ",hit)
+print("Hit Ratio: ",hit/len(reference_string))

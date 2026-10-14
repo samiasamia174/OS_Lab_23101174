@@ -1,0 +1,31 @@
+requests=[60,20,100,10,15,22,42]
+
+
+currentH=50
+totalSeekvalue=0
+n=len(requests)
+sort=requests.sort()
+
+
+print(requests)
+
+
+totalseekvalue=0
+while requests:
+    closest=requests[0]
+
+
+    for request in requests:
+        if abs(currentH-request)<abs(currentH-closest):
+            closest=request
+
+
+    difference=abs(currentH-closest)
+    currentH=closest
+    totalseekvalue+=difference
+
+
+    requests.remove(closest)
+
+
+print("Total Seek Value=",totalseekvalue)
